@@ -1,6 +1,24 @@
 #tag Class
 Protected Class XojoUnitFailTests
 Inherits TestGroup
+	#tag Event
+		Sub TearDown()
+		  If IsAsyncTest Then
+		    PassIfFailed
+		  End If
+		  
+		  StopTestOnFail = True
+		  //
+		  // Why is this here?
+		  // Because this property, when set in the middle of a test
+		  // should not carry over to the next test.
+		  // If it does, all of the subsequent tests will truly
+		  // fail.
+		  //
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0
 		Sub AreDifferentObjectTest()
 		  Dim d1 As Xojo.Core.Date = Xojo.Core.Date.Now
@@ -22,7 +40,7 @@ Inherits TestGroup
 		  Assert.AreDifferent(s1, s2)
 		  IncrementFailCountIfFail
 		  
-		  s1 = s1.DefineEncoding(nil)
+		  s1 = s1.DefineEncoding(Nil)
 		  s2 = s1
 		  Assert.AreDifferent(s1, s2)
 		  IncrementFailCountIfFail
@@ -62,6 +80,12 @@ Inherits TestGroup
 		  Dim c2 As Currency = 40.00 + 2.30
 		  
 		  Assert.AreEqual(c1, c2)
+		  IncrementFailCountIfFail
+		  
+		  c1 = 1.02
+		  c2 = 1.02
+		  
+		  Assert.AreNotEqual(c1, c2)
 		  IncrementFailCountIfFail
 		  
 		  PassIfFailed
@@ -477,6 +501,38 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AsyncTest()
+		  IsAsyncTest = True
+		  AsyncAwait 1
+		  Assert.Fail "No async method started"
+		  IncrementFailCountIfFail
+		  
+		  //
+		  // TearDown will finish this up
+		  //
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub DoesNotMatchStringTest()
+		  Dim actual As String = "12345"
+		  Dim pattern As String = "^\d+$"
+		  
+		  Assert.DoesNotMatch(pattern, actual)
+		  IncrementFailCountIfFail
+		  
+		  actual = "abcd"
+		  pattern = "^[A-Z]+$"
+		  
+		  Assert.DoesNotMatch(pattern, actual)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub FailTest()
 		  Assert.Fail("Failed!")
 		  IncrementFailCountIfFail
@@ -535,6 +591,24 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub MatchesStringTest()
+		  Dim actual As String = "1234a"
+		  Dim pattern As String = "^\d+$"
+		  
+		  Assert.Matches(pattern, actual)
+		  IncrementFailCountIfFail
+		  
+		  actual = "abcd"
+		  pattern = "^(?-i)[A-Z]+$"
+		  
+		  Assert.Matches(pattern, actual)
+		  IncrementFailCountIfFail
+		  
+		  PassIfFailed
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub PassIfFailed()
 		  If FailCount = ExpectedFailCount Then
@@ -563,7 +637,16 @@ Inherits TestGroup
 	#tag Method, Flags = &h0
 		Sub WillTrulyFailTest()
 		  Assert.Fail("Yup it failed", "We expect this to fail")
+		  
+		  StopTestOnFail = True
+		  
 		  Assert.AreEqual(3, 4, "Another test that should fail")
+		  
+		  //
+		  // StopTestOnFail should prevent us from ever getting to this point
+		  //
+		  Break
+		  Assert.Fail("This should not have happened, so StopTestOnFail did not work!")
 		End Sub
 	#tag EndMethod
 
@@ -576,14 +659,99 @@ Inherits TestGroup
 		Private FailCount As Integer
 	#tag EndProperty
 
+	#tag Property, Flags = &h21
+		Private IsAsyncTest As Boolean
+	#tag EndProperty
+
 
 	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Duration"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FailedTestCount"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="IncludeGroup"
+			Visible=false
+			Group="Behavior"
+			InitialValue="True"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="IsRunning"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NotImplementedCount"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PassedTestCount"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RunTestCount"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SkippedTestCount"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="StopTestOnFail"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TestCount"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -591,18 +759,23 @@ Inherits TestGroup
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -610,6 +783,7 @@ Inherits TestGroup
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

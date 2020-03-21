@@ -1,73 +1,49 @@
 #tag Class
-Protected Class CompareTests
+Protected Class StressTests
 Inherits TestGroup
 	#tag Method, Flags = &h21
-		Sub UnicodeEncodingTest()
-		  dim mine as JSONItem_MTC
-		  dim native as JSONItem
+		Sub BigStringTest()
+		  const kSize = 500 * 1024 * 1024
+		  dim halfSize as integer = ( kSize \ 2 ) + 1
 
-		  for i as integer = 0 to &hFFFF
-		    native = new JSONItem
-		    native.Append chr( i )
-		    mine = new JSONItem_MTC
-		    mine.Append chr( i )
+		  dim s as string = "0123456789"
 
-		    dim sNative as string = native.ToString
-		    dim sMine as string = mine.ToString
-		    if sNative <> sMine then
-		      sMine = mine.ToString // Landing spot to break and trace
-		    end if
+		  while s.LenB < halfSize
+		    s = s + s
+		  wend
 
-		    Assert.AreEqual( sNative, sMine, "Codepoint: " + i.ToText )
-		  next i
-
-		  mine = new JSONItem_MTC
-		  native = new JSONItem
-
-		  mine.Append true
-		  mine.Append false
-		  mine.Append 100
-		  mine.Append -100
-		  mine.Append 2000.1
-		  mine.Append -2000.1
-		  mine.Append -2.56e12
-		  mine.Append -3.445e-12
-		  mine.Append nil
-		  mine.Append new JSONItem_MTC( "{""name"":""Kem"",""num"":3.0,""bool"":true}" )
-
-		  native.Append true
-		  native.Append false
-		  native.Append 100
-		  native.Append -100
-		  native.Append 2000.1
-		  native.Append -2000.1
-		  native.Append -2.56e12
-		  native.Append -3.445e-12
-		  native.Append nil
-		  native.Append new JSONItem( "{""name"":""Kem"",""num"":3.0,""bool"":true}" )
-
-		  dim sNative as string = native.ToString
-		  dim sMine as string = mine.ToString
-
-		  if sNative <> sMine then
-		    sMine = mine.ToString
+		  if s.LenB < kSize then
+		    s = s + s.Mid( 1, kSize - s.LenB )
 		  end if
 
-		  Assert.AreEqual( sNative, sMine, "Compact output" )
+		  dim length as integer = s.LenB
+		  #pragma unused length
 
-		  native.Compact = false
-		  mine.Compact = false
+		  dim j as new JSONItem_MTC
+		  j.Compact = true
 
-		  sNative = native.ToString
-		  sMine = mine.ToString
+		  try
+		    j.Append s
+		    Assert.Pass
+		  catch err as OutOfMemoryException
+		    Assert.Fail "Ran out of memory"
+		    return
+		  end try
 
-		  if sNative <> sMine then
-		    sMine = mine.ToString
-		  end if
+		  dim expect as string = "[""" + s + """]"
+		  dim jString as string
+		  try
+		    jString = j.ToString
+		    Assert.AreEqual expect.LenB, jString.LenB, "Lengths don't match"
+		    Assert.AreEqual 0, StrComp( expect, jString, 0 ), "Strings don't match"
+		  catch err as OutOfMemoryException
+		    Assert.Fail "Ran out of memory creating string"
+		    return
+		  end try
 
-		  Assert.AreEqual( sNative, sMine, "Not compact output" )
+		  Assert.IsTrue jString.Encoding = Encodings.UTF8, "Encoding isn't UTF8"
 
-
+		  return
 		End Sub
 	#tag EndMethod
 

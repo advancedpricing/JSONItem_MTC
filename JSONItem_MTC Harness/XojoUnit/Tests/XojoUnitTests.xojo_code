@@ -1,6 +1,40 @@
 #tag Class
 Protected Class XojoUnitTests
-Inherits TestGroup
+Inherits XojoUnitSuperClassTests
+	#tag Event
+		Sub Setup()
+		  Prop2 = Prop2 + 1
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub TearDown()
+		  Prop2 = Prop2 - 1
+		  
+		  If AsyncTestTimer IsA Object Then
+		    AsyncTestTimer.Mode = Xojo.Core.Timer.Modes.Off
+		    RemoveHandler AsyncTestTimer.Action, WeakAddressOf AsyncTestTimer_Action
+		    AsyncTestTimer = Nil
+		  End If
+		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Function UnhandledException(err As RuntimeException, methodName As Text) As Boolean
+		  #pragma unused err
+		  
+		  Const kMethodName As Text = "UnhandledException"
+		  
+		  If methodName.Length >= kMethodName.Length And methodName.Left(kMethodName.Length) = kMethodName Then
+		    Assert.Pass("Exception was handled")
+		    Return True
+		  End If
+		End Function
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0
 		Sub AreDifferentObjectTest()
 		  Dim d1 As Xojo.Core.Date = Xojo.Core.Date.Now
@@ -19,7 +53,7 @@ Inherits TestGroup
 		  Assert.AreDifferent(s1, s2)
 		  
 		  s1 = s2
-		  s1 = s1.DefineEncoding(nil)
+		  s1 = s1.DefineEncoding(Nil)
 		  Assert.AreDifferent(s1, s2)
 		  
 		End Sub
@@ -50,6 +84,11 @@ Inherits TestGroup
 		  Dim c2 As Currency = 40.00 + 2.38
 		  
 		  Assert.AreEqual(c1, c2)
+		  
+		  c1 = 1.02
+		  c2 = 1.99
+		  
+		  Assert.AreNotEqual(c1, c2)
 		End Sub
 	#tag EndMethod
 
@@ -357,6 +396,57 @@ Inherits TestGroup
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub AsyncTest()
+		  If AsyncTestTimer Is Nil Then
+		    AsyncTestTimer = New Xojo.Core.Timer
+		    AddHandler AsyncTestTimer.Action, WeakAddressOf AsyncTestTimer_Action
+		  End If
+		  
+		  AsyncTestTimer.Mode = Xojo.Core.Timer.Modes.Single
+		  AsyncTestTimer.Period = 500
+		  AsyncAwait 3
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub AsyncTestTimer_Action(sender As Xojo.Core.Timer)
+		  #Pragma Unused sender
+		  
+		  AsyncComplete
+		  Assert.Pass "Async timer action ran as scheduled"
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CleanSlate1Test()
+		  Assert.AreEqual(0, Prop1)
+		  Prop1 = Prop1 + 1
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub CleanSlate2Test()
+		  Assert.AreEqual(0, Prop1)
+		  Prop1 = Prop1 + 1
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub DoesNotMatchStringTest()
+		  Dim actual As String = "abcde"
+		  Dim pattern As String = "^\d+$"
+		  
+		  Assert.DoesNotMatch(pattern, actual)
+		  
+		  actual = "abcd"
+		  pattern = "^(?-i)[A-Z]+$"
+		  
+		  Assert.DoesNotMatch(pattern, actual)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub IsFalseTest()
 		  Assert.IsFalse(False)
 		End Sub
@@ -384,20 +474,222 @@ Inherits TestGroup
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, CompatibilityFlags = (TargetConsole and (Target32Bit or Target64Bit)) or  (TargetWeb and (Target32Bit or Target64Bit)) or  (TargetDesktop and (Target32Bit or Target64Bit))
+		Sub MatchesStringTest()
+		  Dim actual As String = "12345"
+		  Dim pattern As String = "^\d+$"
+		  
+		  Assert.Matches(pattern, actual)
+		  
+		  actual = "abcd"
+		  pattern = "^[A-Z]+$"
+		  
+		  Assert.Matches(pattern, actual)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub NotImplementedTest()
+		  // Tests will only return a result if one of the Assert methods
+		  // are called. This test intentionally does nothing useful to 
+		  // simulate those times when a developer forgets to do this.
+		  //
+		  // It should report as "not implemented".
+		  //
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub OverriddenMethodTest()
+		  Assert.Pass "This subclass method executed as intended"
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub PassTest()
 		  Assert.Pass("Passed!")
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub Setup1Test()
+		  Assert.AreEqual(1, Prop2)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Setup2Test()
+		  Assert.AreEqual(1, Prop2)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TestMethodWithParamTest(param As Text)
+		  #Pragma Unused param
+		  
+		  Assert.Fail "A test method with a param should have been ignored"
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub TestTimersTest()
+		  //
+		  // Demonstrates the use of Test Timers
+		  // 
+		  
+		  StartTestTimer // key is optional
+		  StartTestTimer("Part1")
+		  StartTestTimer("Part2")
+		  StartTestTimer("Part3")
+		  StartTestTimer("Unused")
+		  
+		  Dim target As Double = Microseconds + 250000.0
+		  While Microseconds < target
+		    //
+		    // Wait
+		    //
+		  Wend
+		  
+		  LogTestTimer("Part1", "initial")
+		  LogTestTimer("Part3", "before reset")
+		  StartTestTimer("Part3") // A Test Timer can be restarted at any time, even if not logged
+		  
+		  target = Microseconds + 500.0
+		  While Microseconds < target
+		    //
+		    // Wait
+		    //
+		  Wend
+		  
+		  LogTestTimer("Part1", "done") // Reusing this as a way to creating a lap
+		  LogTestTimer("Part2")
+		  LogTestTimer("Part3", "after reset")
+		  
+		  //
+		  // Timer "Unused" is never logged, and that's ok
+		  //
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub UnhandledExceptionTest()
+		  //
+		  // Create an exception
+		  //
+		  
+		  Dim d As Dictionary // Nil!
+		  
+		  #Pragma BreakOnExceptions False
+		  call d.Value(1)
+		  #Pragma BreakOnExceptions Default 
+		End Sub
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h21
+		Private AsyncTestTimer As Xojo.Core.Timer
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private Prop1 As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private Shared Prop2 As Integer
+	#tag EndProperty
+
 
 	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Duration"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Double"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FailedTestCount"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="IncludeGroup"
+			Visible=false
+			Group="Behavior"
+			InitialValue="True"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="IsRunning"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NotImplementedCount"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PassedTestCount"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RunTestCount"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SkippedTestCount"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="StopTestOnFail"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TestCount"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
@@ -405,18 +697,23 @@ Inherits TestGroup
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
@@ -424,6 +721,7 @@ Inherits TestGroup
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

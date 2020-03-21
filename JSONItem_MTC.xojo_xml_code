@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<RBProject version="2015r3.1" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2019r3.1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1729940940">
  <ObjName>JSONItem_MTC</ObjName>
  <ObjContainerID>0</ObjContainerID>
@@ -11,6 +11,7 @@
   <ItemName>AdvancePastWhiteSpace</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1595070463</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub AdvancePastWhiteSpace(inMB As MemoryBlock, ByRef pos As Integer)</SourceLine>
@@ -19,7 +20,7 @@
    <SourceLine></SourceLine>
    <SourceLine>do</SourceLine>
    <SourceLine>if pos &gt; lastPos then</SourceLine>
-   <SourceLine>raise new JSONException( "A parsing error occurred at", 2, pos )</SourceLine>
+   <SourceLine>raise new JSONException( "A parsing error occurred", 2, pos )</SourceLine>
    <SourceLine>return</SourceLine>
    <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
@@ -44,6 +45,7 @@
   <ItemName>Append</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>338456575</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Append(value As Variant)</SourceLine>
@@ -69,6 +71,7 @@
   <ItemName>Child</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1240612863</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function Child(index As Integer) As JSONItem_MTC</SourceLine>
@@ -88,6 +91,7 @@
   <ItemName>Child</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>148371455</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Child(index As Integer, Assigns obj As JSONItem_MTC)</SourceLine>
@@ -106,6 +110,7 @@
   <ItemName>Child</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1350766591</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function Child(name As String) As JSONItem_MTC</SourceLine>
@@ -125,6 +130,7 @@
   <ItemName>Child</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1153255423</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Child(name As String, Assigns obj As JSONItem_MTC)</SourceLine>
@@ -143,6 +149,7 @@
   <ItemName>Clear</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>844138495</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Clear()</SourceLine>
@@ -162,6 +169,7 @@
   <ItemName>Constructor</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1090279423</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Constructor()</SourceLine>
@@ -183,6 +191,7 @@
   <ItemName>Constructor</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1303343103</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Constructor(JSONString As String, isStrict As Boolean = False)</SourceLine>
@@ -204,16 +213,10 @@
   <ItemName>DecodeString</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1646084095</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function DecodeString(inMB As MemoryBlock, ByRef pos As Integer, current As JSONItem_MTC, outMB As MemoryBlock) As String</SourceLine>
-   <SourceLine>#if not DebugBuild</SourceLine>
-   <SourceLine>#pragma BackgroundTasks false</SourceLine>
-   <SourceLine>#pragma BoundsChecking false</SourceLine>
-   <SourceLine>#pragma NilObjectChecking false</SourceLine>
-   <SourceLine>#pragma StackOverflowChecking false</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine></SourceLine>
    <SourceLine>dim lastPos as integer = inMB.Size - 1</SourceLine>
    <SourceLine>if pos &gt; lastPos then</SourceLine>
    <SourceLine>raise new JSONException( "Missing """, 7, pos + 1 )</SourceLine>
@@ -298,7 +301,7 @@
    <SourceLine>outPtr.Byte( outIndex ) = 12</SourceLine>
    <SourceLine>outIndex = outIndex + 1</SourceLine>
    <SourceLine>pos = pos + 1</SourceLine>
-   <SourceLine>case 117 /// u</SourceLine>
+   <SourceLine>case 117 // u</SourceLine>
    <SourceLine>if ( pos + 5 ) &gt; lastPos then</SourceLine>
    <SourceLine>raise new JSONException( "Improperly formed JSON string", 0 )</SourceLine>
    <SourceLine>return ""</SourceLine>
@@ -440,16 +443,10 @@
   <ItemName>DecodeValue</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1663215615</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function DecodeValue(inMB As MemoryBlock, ByRef pos As Integer, current As JSONItem_MTC, outMB As MemoryBlock) As Variant</SourceLine>
-   <SourceLine>#if not DebugBuild</SourceLine>
-   <SourceLine>#pragma BackgroundTasks false</SourceLine>
-   <SourceLine>#pragma BoundsChecking false</SourceLine>
-   <SourceLine>#pragma NilObjectChecking false</SourceLine>
-   <SourceLine>#pragma StackOverflowChecking false</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine></SourceLine>
    <SourceLine>static trueValue as Int32</SourceLine>
    <SourceLine>if trueValue = 0 then</SourceLine>
    <SourceLine>dim mb as MemoryBlock = "true"</SourceLine>
@@ -606,9 +603,10 @@
   <ItemName>EncodeString</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1035366399</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub EncodeString(s As String, settings As JSONItem_MTC, outMB As MemoryBlock, ByRef outIndex As Integer, inMB As MemoryBlock)</SourceLine>
+   <SourceLine>Sub EncodeString(s As String, settings As JSONItem_MTC, outMBs() As MemoryBlock, ByRef outIndex As Integer, inMB As MemoryBlock)</SourceLine>
    <SourceLine>// Encodes a string for output during ToString.</SourceLine>
    <SourceLine>// Honors the EncodeUnicode setting, but some characters must ALWAYS be encoded for </SourceLine>
    <SourceLine>// Javascript compatibility. These are</SourceLine>
@@ -624,13 +622,6 @@
    <SourceLine>//  &amp;hfeff</SourceLine>
    <SourceLine>//  &amp;hfff0 - &amp;hffff</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>#if not DebugBuild</SourceLine>
-   <SourceLine>#pragma BackgroundTasks false</SourceLine>
-   <SourceLine>#pragma BoundsChecking false</SourceLine>
-   <SourceLine>#pragma NilObjectChecking false</SourceLine>
-   <SourceLine>#pragma StackOverflowChecking false</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine></SourceLine>
    <SourceLine>static alwaysEncode() as integer = Array( _</SourceLine>
    <SourceLine>127, &amp;hAD, _</SourceLine>
    <SourceLine>&amp;h600, &amp;h601, &amp;h602, &amp;h603, &amp;h604, _</SourceLine>
@@ -645,12 +636,12 @@
    <SourceLine>&amp;hFFFA, &amp;hFFFB, &amp;hFFFC, &amp;hFFFD, &amp;hFFFE, &amp;hFFFF _</SourceLine>
    <SourceLine>)</SourceLine>
    <SourceLine></SourceLine>
+   <SourceLine>const kByteBuffer = 13 // Most an encoding can use plus the trailing quote</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim outMB as MemoryBlock = outMBs( outMBs.Ubound )</SourceLine>
    <SourceLine>dim outSize as integer = outMB.Size</SourceLine>
-   <SourceLine>if outIndex &gt; ( outSize - 12 ) then</SourceLine>
-   <SourceLine>do</SourceLine>
-   <SourceLine>outSize = outSize + outSize</SourceLine>
-   <SourceLine>loop until outIndex &lt;= ( outSize - 12 )</SourceLine>
-   <SourceLine>outMB.Size = outSize</SourceLine>
+   <SourceLine>if outIndex &gt; ( outSize - kByteBuffer ) then</SourceLine>
+   <SourceLine>outMB = AppendOutMB( outMBs, outIndex )</SourceLine>
    <SourceLine>end if</SourceLine>
    <SourceLine>dim outPtr as Ptr = outMB</SourceLine>
    <SourceLine></SourceLine>
@@ -686,11 +677,9 @@
    <SourceLine>exit do</SourceLine>
    <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>if outIndex &gt; ( outSize - 12 ) then</SourceLine>
-   <SourceLine>do</SourceLine>
-   <SourceLine>outSize = outSize + outSize</SourceLine>
-   <SourceLine>loop until outIndex &lt;= ( outSize - 12 )</SourceLine>
-   <SourceLine>outMB.Size = outSize</SourceLine>
+   <SourceLine>if outIndex &gt; ( outSize - kByteBuffer ) then</SourceLine>
+   <SourceLine>outMB = AppendOutMB( outMBs, outIndex )</SourceLine>
+   <SourceLine>outSize = outMB.Size</SourceLine>
    <SourceLine>outPtr = outMB</SourceLine>
    <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
@@ -811,14 +800,6 @@
    <SourceLine></SourceLine>
    <SourceLine>loop</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>if outIndex &gt; ( outSize - 1024 ) then</SourceLine>
-   <SourceLine>do</SourceLine>
-   <SourceLine>outSize = outSize + outSize</SourceLine>
-   <SourceLine>loop until outIndex &lt;= ( outSize - 1024 )</SourceLine>
-   <SourceLine>outMB.Size = outSize</SourceLine>
-   <SourceLine>outPtr = outMB</SourceLine>
-   <SourceLine>end if</SourceLine>
-   <SourceLine></SourceLine>
    <SourceLine>outPtr.Byte( outIndex ) = kQuote</SourceLine>
    <SourceLine>outIndex = outIndex + 1</SourceLine>
    <SourceLine></SourceLine>
@@ -828,37 +809,32 @@
   <AliasName></AliasName>
   <ItemFlags>33</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>s As String, settings As JSONItem_MTC, outMB As MemoryBlock, ByRef outIndex As Integer, inMB As MemoryBlock</ItemParams>
+  <ItemParams>s As String, settings As JSONItem_MTC, outMBs() As MemoryBlock, ByRef outIndex As Integer, inMB As MemoryBlock</ItemParams>
   <ItemResult></ItemResult>
  </Method>
  <Method>
   <ItemName>EncodeValue</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>60155903</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub EncodeValue(value As Variant, settings As JSONItem_MTC, level As Integer, outMB As MemoryBlock, ByRef outIndex As Integer, inMB As MemoryBlock)</SourceLine>
-   <SourceLine>#if not DebugBuild</SourceLine>
-   <SourceLine>#pragma BackgroundTasks false</SourceLine>
-   <SourceLine>#pragma BoundsChecking false</SourceLine>
-   <SourceLine>#pragma NilObjectChecking false</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine></SourceLine>
+   <SourceLine>Sub EncodeValue(value As Variant, settings As JSONItem_MTC, level As Integer, outMBs() As MemoryBlock, ByRef outIndex As Integer, inMB As MemoryBlock)</SourceLine>
    <SourceLine>if value IsA JSONItem_MTC then</SourceLine>
-   <SourceLine>JSONItem_MTC( value ).Serialize( outMB, outIndex, settings, level, inMB )</SourceLine>
+   <SourceLine>JSONItem_MTC( value ).Serialize( outMBs, outIndex, settings, level, inMB )</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>elseif value IsA Dictionary then</SourceLine>
    <SourceLine>dim child as JSONItem_MTC = Dictionary( value )</SourceLine>
-   <SourceLine>child.Serialize( outMB, outIndex, settings, level, inMB )</SourceLine>
+   <SourceLine>child.Serialize( outMBs, outIndex, settings, level, inMB )</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>elseif value.Type = Variant.TypeString or value.Type = Variant.TypeCString or _</SourceLine>
    <SourceLine>value.Type = Variant.TypePString then</SourceLine>
-   <SourceLine>EncodeString( value.StringValue, settings, outMB, outIndex, inMB )</SourceLine>
+   <SourceLine>EncodeString( value.StringValue, settings, outMBs, outIndex, inMB )</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>elseif value.Type = Variant.TypeText then</SourceLine>
    <SourceLine>dim t as Text = value.TextValue</SourceLine>
    <SourceLine>dim s as string = t</SourceLine>
-   <SourceLine>EncodeString( s, settings, outMB, outIndex, inMB )</SourceLine>
+   <SourceLine>EncodeString( s, settings, outMBs, outIndex, inMB )</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>else</SourceLine>
    <SourceLine></SourceLine>
@@ -890,16 +866,15 @@
    <SourceLine>insert = value.StringValue.Lowercase</SourceLine>
    <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
+   <SourceLine>dim insertLen as integer = insert.LenB</SourceLine>
+   <SourceLine>dim outMB as MemoryBlock = outMBs( outMBs.Ubound )</SourceLine>
    <SourceLine>dim outSize as integer = outMB.Size</SourceLine>
-   <SourceLine>if outIndex &gt; ( outSize - insert.LenB ) then</SourceLine>
-   <SourceLine>do</SourceLine>
-   <SourceLine>outSize = outSize + outSize</SourceLine>
-   <SourceLine>loop until outIndex &lt;= ( outSize - insert.LenB )</SourceLine>
-   <SourceLine>outMB.Size = outSize</SourceLine>
+   <SourceLine>if outIndex &gt; ( outSize - insertLen ) then</SourceLine>
+   <SourceLine>outMB = AppendOutMB( outMBs, outIndex )</SourceLine>
    <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>outMB.StringValue( outIndex, insert.LenB ) = insert</SourceLine>
-   <SourceLine>outIndex = outIndex + insert.LenB</SourceLine>
+   <SourceLine>outMB.StringValue( outIndex, insertLen ) = insert</SourceLine>
+   <SourceLine>outIndex = outIndex + insertLen</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>end if</SourceLine>
    <SourceLine>End Sub</SourceLine>
@@ -908,13 +883,14 @@
   <AliasName></AliasName>
   <ItemFlags>33</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>value As Variant, settings As JSONItem_MTC, level As Integer, outMB As MemoryBlock, ByRef outIndex As Integer, inMB As MemoryBlock</ItemParams>
+  <ItemParams>value As Variant, settings As JSONItem_MTC, level As Integer, outMBs() As MemoryBlock, ByRef outIndex As Integer, inMB As MemoryBlock</ItemParams>
   <ItemResult></ItemResult>
  </Method>
  <Method>
   <ItemName>EnsureArray</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>53555199</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function EnsureArray() As Boolean</SourceLine>
@@ -922,7 +898,7 @@
    <SourceLine>return true</SourceLine>
    <SourceLine>else</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>raise new JSONException( "This JSONItem_MTC is an obect", 13 )</SourceLine>
+   <SourceLine>raise new JSONException( "This JSONItem_MTC is an object", 13 )</SourceLine>
    <SourceLine>return false</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>end if</SourceLine>
@@ -939,6 +915,7 @@
   <ItemName>EnsureObject</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1343256575</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function EnsureObject() As Boolean</SourceLine>
@@ -963,6 +940,7 @@
   <ItemName>HasName</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>458487807</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function HasName(name As String) As Boolean</SourceLine>
@@ -987,6 +965,7 @@
   <ItemName>Insert</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1100691455</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Insert(index As Integer, value As Variant)</SourceLine>
@@ -1010,6 +989,7 @@
   <ItemName>Load</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>646508543</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Load(JSONString As String)</SourceLine>
@@ -1200,6 +1180,7 @@
   <ItemName>Lookup</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>916008959</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function Lookup(name As String, defaultValue As Variant) As Variant</SourceLine>
@@ -1223,6 +1204,7 @@
   <ItemName>Name</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1322094591</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function Name(index As Integer) As String</SourceLine>
@@ -1247,6 +1229,7 @@
   <ItemName>Names</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>145336319</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function Names() As String()</SourceLine>
@@ -1278,15 +1261,20 @@
  <Method>
   <ItemName>Operator_Convert</ItemName>
   <Compatibility></Compatibility>
+  <Attributes>hidden</Attributes>
   <Visible>1</Visible>
+  <PartID>1717555199</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub Operator_Convert(d As Dictionary)</SourceLine>
+   <SourceLine>Attributes( hidden )  Sub Operator_Convert(d As Dictionary)</SourceLine>
    <SourceLine>self.Constructor()</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>dim keys() as variant = d.Keys</SourceLine>
-   <SourceLine>for each name as string in keys</SourceLine>
-   <SourceLine>self.Value( name ) = d.Value( name )</SourceLine>
+   <SourceLine>dim values() as variant = d.Values</SourceLine>
+   <SourceLine>for i as integer = 0 to keys.Ubound</SourceLine>
+   <SourceLine>dim name as string = keys( i )</SourceLine>
+   <SourceLine>dim value as variant = values( i )</SourceLine>
+   <SourceLine>self.Value( name ) = value</SourceLine>
    <SourceLine>next</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Sub</SourceLine>
@@ -1302,6 +1290,7 @@
   <ItemName>Operator_Subscript</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>992323583</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function Operator_Subscript(index As Integer) As Variant</SourceLine>
@@ -1320,6 +1309,7 @@
   <ItemName>Remove</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>232185855</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Remove(index As Integer)</SourceLine>
@@ -1342,6 +1332,7 @@
   <ItemName>Remove</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>26384383</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Remove(name As String)</SourceLine>
@@ -1365,18 +1356,73 @@
   <ItemName>Serialize</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1024897023</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function Serialize(data As JSONItem_MTC) As String</SourceLine>
-   <SourceLine>dim outMB as new MemoryBlock( 2048 )</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>// Most JSON will be rather small, so we'll start with a small initial block</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>const kInitialMBSize = 10 * 1024</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim outMB as new MemoryBlock( kInitialMBSize )</SourceLine>
+   <SourceLine>dim outMBs() as MemoryBlock</SourceLine>
+   <SourceLine>outMBs.Append outMB</SourceLine>
    <SourceLine>dim outIndex as integer</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>dim inMB as new MemoryBlock( 2048 )</SourceLine>
+   <SourceLine>dim inMB as new MemoryBlock( kInMBSize )</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>data.Serialize( outMB, outIndex, self, 0, inMB)</SourceLine>
+   <SourceLine>data.Serialize( outMBs, outIndex, self, 0, inMB)</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>dim r as string = outMB.StringValue( 0, outIndex )</SourceLine>
-   <SourceLine>r = r.DefineEncoding( Encodings.UTF8 )</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>// We know exactly how long the last MemoryBlock's data is</SourceLine>
+   <SourceLine>// in outIndex</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim joiner() as string </SourceLine>
+   <SourceLine>redim joiner( outMBs.Ubound)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for i as integer = 0  to outMBs.Ubound</SourceLine>
+   <SourceLine>#if DebugBuild</SourceLine>
+   <SourceLine>if i = 1 then</SourceLine>
+   <SourceLine>i = i // A place to break</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>#endif</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>outMB = outMBs( i )</SourceLine>
+   <SourceLine>outMBs( i ) = nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim s as string</SourceLine>
+   <SourceLine>if i = outMBs.Ubound then</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>s = outMB.StringValue( 0, outIndex )</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>// Scan for the final null</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>dim lastBytePos as integer = outMB.Size - 1</SourceLine>
+   <SourceLine>dim p as Ptr = outMB</SourceLine>
+   <SourceLine>for bytePos as integer = lastBytePos downto 0</SourceLine>
+   <SourceLine>if p.Byte( bytePos ) &lt;&gt; 0 then</SourceLine>
+   <SourceLine>s = outMB.StringValue( 0, bytePos + 1 )</SourceLine>
+   <SourceLine>exit for bytePos</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>next bytePos</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>outMB = nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if s = "" then</SourceLine>
+   <SourceLine>raise new JSONException( "Couldn't find non-null bytes in a MemoryBlock", 0 )</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>s = s.DefineEncoding( Encodings.UTF8 )</SourceLine>
+   <SourceLine>joiner( i ) = s</SourceLine>
+   <SourceLine>next i</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim r as string = join( joiner, "" )</SourceLine>
    <SourceLine>return r</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
@@ -1392,14 +1438,11 @@
   <ItemName>Serialize</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1886904319</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub Serialize(outMB As MemoryBlock, ByRef outIndex As Integer, settings As JSONItem_MTC, level As Integer, inMB As MemoryBlock)</SourceLine>
-   <SourceLine>#if not DebugBuild</SourceLine>
-   <SourceLine>#pragma BackgroundTasks false</SourceLine>
-   <SourceLine>#pragma BoundsChecking false</SourceLine>
-   <SourceLine>#pragma NilObjectChecking false</SourceLine>
-   <SourceLine>#endif</SourceLine>
+   <SourceLine>Sub Serialize(outMBs() As MemoryBlock, ByRef outIndex As Integer, settings As JSONItem_MTC, level As Integer, inMB As MemoryBlock)</SourceLine>
+   <SourceLine>dim outMB as MemoryBlock = outMBs( outMBs.Ubound )</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>level = level + 1</SourceLine>
    <SourceLine>dim notCompact as boolean = not( settings.Compact ) and settings.IndentSpacing &gt; 0</SourceLine>
@@ -1420,10 +1463,8 @@
    <SourceLine>//</SourceLine>
    <SourceLine>dim outSize as integer = outMB.Size</SourceLine>
    <SourceLine>if outIndex &gt; ( outSize - 1024 ) then</SourceLine>
-   <SourceLine>do</SourceLine>
-   <SourceLine>outSize = outSize + outSize</SourceLine>
-   <SourceLine>loop until outIndex &lt;= ( outSize - 1024 )</SourceLine>
-   <SourceLine>outMB.Size = outSize</SourceLine>
+   <SourceLine>outMB = AppendOutMB( outMBs, outIndex )</SourceLine>
+   <SourceLine>outSize = outMB.Size</SourceLine>
    <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>dim outPtr as Ptr = outMB</SourceLine>
@@ -1445,12 +1486,10 @@
    <SourceLine></SourceLine>
    <SourceLine>for i as integer = 0 to ArrayValues.Ubound</SourceLine>
    <SourceLine>if outIndex &gt; ( outSize - 1024 ) then</SourceLine>
-   <SourceLine>do</SourceLine>
-   <SourceLine>outSize = outSize + outSize</SourceLine>
-   <SourceLine>loop until outIndex &lt;= ( outSize - 1024 )</SourceLine>
-   <SourceLine>outMB.Size = outSize</SourceLine>
-   <SourceLine>end if</SourceLine>
+   <SourceLine>outMB = AppendOutMB( outMBs, outIndex )</SourceLine>
+   <SourceLine>outSize = outMB.Size</SourceLine>
    <SourceLine>outPtr = outMB</SourceLine>
+   <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>if notCompact then</SourceLine>
    <SourceLine>outMB.StringValue( outIndex, indenter.LenB ) = indenter</SourceLine>
@@ -1458,14 +1497,13 @@
    <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>dim value as variant = ArrayValues( i )</SourceLine>
-   <SourceLine>EncodeValue( value, settings, level, outMB, outIndex, inMB )</SourceLine>
+   <SourceLine>EncodeValue( value, settings, level, outMBs, outIndex, inMB )</SourceLine>
    <SourceLine></SourceLine>
+   <SourceLine>outMB = outMBs( outMBs.Ubound )</SourceLine>
    <SourceLine>outSize = outMB.Size</SourceLine>
    <SourceLine>if outIndex &gt; ( outSize - 1024 ) then</SourceLine>
-   <SourceLine>do</SourceLine>
-   <SourceLine>outSize = outSize + outSize</SourceLine>
-   <SourceLine>loop until outIndex &lt;= ( outSize - 1024 )</SourceLine>
-   <SourceLine>outMB.Size = outSize</SourceLine>
+   <SourceLine>outMB = AppendOutMB( outMBs, outIndex )</SourceLine>
+   <SourceLine>outSize = outMB.Size</SourceLine>
    <SourceLine>end if</SourceLine>
    <SourceLine>outPtr = outMB</SourceLine>
    <SourceLine></SourceLine>
@@ -1484,21 +1522,17 @@
    <SourceLine>next i</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>if outIndex &gt; ( outSize - 1024 ) then</SourceLine>
-   <SourceLine>do</SourceLine>
-   <SourceLine>outSize = outSize + outSize</SourceLine>
-   <SourceLine>loop until outIndex &lt;= ( outSize - 1024 )</SourceLine>
-   <SourceLine>outMB.Size = outSize</SourceLine>
-   <SourceLine>end if</SourceLine>
+   <SourceLine>outMB = AppendOutMB( outMBs, outIndex )</SourceLine>
+   <SourceLine>outSize = outMB.Size</SourceLine>
    <SourceLine>outPtr = outMB</SourceLine>
+   <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>if notCompact then</SourceLine>
    <SourceLine>if outIndex &gt; ( outSize - indenter.LenB ) then</SourceLine>
-   <SourceLine>do</SourceLine>
-   <SourceLine>outSize = outSize + outSize</SourceLine>
-   <SourceLine>loop until outIndex &lt;= ( outSize - indenter.LenB )</SourceLine>
-   <SourceLine>outMB.Size = outSize</SourceLine>
-   <SourceLine>end if</SourceLine>
+   <SourceLine>outMB = AppendOutMB( outMBs, outIndex )</SourceLine>
+   <SourceLine>outSize = outMB.Size</SourceLine>
    <SourceLine>outPtr = outMB</SourceLine>
+   <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>outMB.StringValue( outIndex, indenter.LenB - settings.IndentSpacing ) = indenter.LeftB( indenter.LenB - indentSpacing )</SourceLine>
    <SourceLine>outIndex = outIndex + ( indenter.LenB - settings.IndentSpacing )</SourceLine>
@@ -1506,12 +1540,10 @@
    <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>if outIndex &gt; ( outSize - 1024 ) then</SourceLine>
-   <SourceLine>do</SourceLine>
-   <SourceLine>outSize = outSize + outSize</SourceLine>
-   <SourceLine>loop until outIndex &lt;= ( outSize - 1024 )</SourceLine>
-   <SourceLine>outMB.Size = outSize</SourceLine>
-   <SourceLine>end if</SourceLine>
+   <SourceLine>outMB = AppendOutMB( outMBs, outIndex )</SourceLine>
+   <SourceLine>outSize = outMB.Size</SourceLine>
    <SourceLine>outPtr = outMB</SourceLine>
+   <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>outPtr.Byte( outIndex ) = kCloseSquareBracket</SourceLine>
    <SourceLine>outIndex = outIndex + 1</SourceLine>
@@ -1536,10 +1568,8 @@
    <SourceLine>dim keys() as variant = d.Keys</SourceLine>
    <SourceLine>for i as integer = 0 to keys.Ubound</SourceLine>
    <SourceLine>if outIndex &gt; ( outSize - 1024 ) then</SourceLine>
-   <SourceLine>do</SourceLine>
-   <SourceLine>outSize = outSize + outSize</SourceLine>
-   <SourceLine>loop until outIndex &lt;= ( outSize - 1024 )</SourceLine>
-   <SourceLine>outMB.Size = outSize</SourceLine>
+   <SourceLine>outMB = AppendOutMB( outMBs, outIndex )</SourceLine>
+   <SourceLine>outSize = outMB.Size</SourceLine>
    <SourceLine>outPtr = outMB</SourceLine>
    <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
@@ -1550,14 +1580,13 @@
    <SourceLine></SourceLine>
    <SourceLine>dim key as variant = keys( i )</SourceLine>
    <SourceLine>dim name as string = KeyToName( key )</SourceLine>
-   <SourceLine>EncodeString( name, settings, outMB, outIndex, inMB )</SourceLine>
+   <SourceLine>EncodeString( name, settings, outMBs, outIndex, inMB )</SourceLine>
    <SourceLine></SourceLine>
+   <SourceLine>outMB = outMBs( outMBs.Ubound )</SourceLine>
    <SourceLine>outSize  = outMB.Size</SourceLine>
    <SourceLine>if outIndex &gt; ( outSize - 1 ) then</SourceLine>
-   <SourceLine>do</SourceLine>
-   <SourceLine>outSize = outSize + outSize</SourceLine>
-   <SourceLine>loop until outIndex &lt;= ( outSize - 1 )</SourceLine>
-   <SourceLine>outMB.Size = outSize</SourceLine>
+   <SourceLine>outMB = AppendOutMB( outMBs, outIndex )</SourceLine>
+   <SourceLine>outSize = outMB.Size</SourceLine>
    <SourceLine>end if</SourceLine>
    <SourceLine>outPtr = outMB</SourceLine>
    <SourceLine></SourceLine>
@@ -1565,14 +1594,13 @@
    <SourceLine>outIndex = outIndex + 1</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>dim value as variant = d.Value( key )</SourceLine>
-   <SourceLine>EncodeValue( value, settings, level, outMB, outIndex, inMB )</SourceLine>
+   <SourceLine>EncodeValue( value, settings, level, outMBs, outIndex, inMB )</SourceLine>
    <SourceLine></SourceLine>
+   <SourceLine>outMB = outMBs( outMBs.Ubound )</SourceLine>
    <SourceLine>outSize  = outMB.Size</SourceLine>
    <SourceLine>if outIndex &gt; ( outSize - 1024 ) then</SourceLine>
-   <SourceLine>do</SourceLine>
-   <SourceLine>outSize = outSize + outSize</SourceLine>
-   <SourceLine>loop until outIndex &lt;= ( outSize - 1024 )</SourceLine>
-   <SourceLine>outMB.Size = outSize</SourceLine>
+   <SourceLine>outMB = AppendOutMB( outMBs, outIndex )</SourceLine>
+   <SourceLine>outSize = outMB.Size</SourceLine>
    <SourceLine>end if</SourceLine>
    <SourceLine>outPtr = outMB</SourceLine>
    <SourceLine></SourceLine>
@@ -1592,10 +1620,8 @@
    <SourceLine></SourceLine>
    <SourceLine>if notCompact then</SourceLine>
    <SourceLine>if outIndex &gt; ( outSize - indenter.LenB ) then</SourceLine>
-   <SourceLine>do</SourceLine>
-   <SourceLine>outSize = outSize + outSize</SourceLine>
-   <SourceLine>loop until outIndex &lt;= ( outSize - indenter.LenB )</SourceLine>
-   <SourceLine>outMB.Size = outSize</SourceLine>
+   <SourceLine>outMB = AppendOutMB( outMBs, outIndex )</SourceLine>
+   <SourceLine>outSize = outMB.Size</SourceLine>
    <SourceLine>outPtr = outMB</SourceLine>
    <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
@@ -1605,10 +1631,8 @@
    <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>if outIndex &gt; ( outSize - 1024 ) then</SourceLine>
-   <SourceLine>do</SourceLine>
-   <SourceLine>outSize = outSize + outSize</SourceLine>
-   <SourceLine>loop until outIndex &lt;= ( outSize - 1024 )</SourceLine>
-   <SourceLine>outMB.Size = outSize</SourceLine>
+   <SourceLine>outMB = AppendOutMB( outMBs, outIndex )</SourceLine>
+   <SourceLine>outSize = outMB.Size</SourceLine>
    <SourceLine>outPtr = outMB</SourceLine>
    <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
@@ -1623,13 +1647,14 @@
   <AliasName></AliasName>
   <ItemFlags>1</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>outMB As MemoryBlock, ByRef outIndex As Integer, settings As JSONItem_MTC, level As Integer, inMB As MemoryBlock</ItemParams>
+  <ItemParams>outMBs() As MemoryBlock, ByRef outIndex As Integer, settings As JSONItem_MTC, level As Integer, inMB As MemoryBlock</ItemParams>
   <ItemResult></ItemResult>
  </Method>
  <Method>
   <ItemName>Value</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>2141319167</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function Value(index As Integer) As Variant</SourceLine>
@@ -1652,6 +1677,7 @@
   <ItemName>Value</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1970421759</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Value(index As Integer, Assigns value As Variant)</SourceLine>
@@ -1681,6 +1707,7 @@
   <ItemName>Value</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>396521471</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function Value(name As String) As Variant</SourceLine>
@@ -1704,6 +1731,7 @@
   <ItemName>Value</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>41064447</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub Value(name As String, Assigns value As Variant)</SourceLine>
@@ -1730,12 +1758,13 @@
   <ItemName>NameToKey</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1782718463</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function NameToKey(name As String) As String</SourceLine>
-   <SourceLine>dim r as string = name.ConvertEncoding( Encodings.UTF8 )</SourceLine>
-   <SourceLine>r = EncodeHex( r )</SourceLine>
-   <SourceLine>return r</SourceLine>
+   <SourceLine>name = name.ConvertEncoding( Encodings.UTF8 )</SourceLine>
+   <SourceLine>dim key as string = name + "-" + EncodeHex( name )</SourceLine>
+   <SourceLine>return key</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
@@ -1750,29 +1779,84 @@
   <ItemName>KeyToName</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>826953727</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function KeyToName(name As String) As String</SourceLine>
-   <SourceLine>dim r as string = DecodeHex( name )</SourceLine>
-   <SourceLine>r = r.DefineEncoding( Encodings.UTF8 )</SourceLine>
-   <SourceLine>return r</SourceLine>
+   <SourceLine>Function KeyToName(key As String) As String</SourceLine>
+   <SourceLine>dim hex as string = key.NthField( "-", key.CountFields( "-" ) )</SourceLine>
+   <SourceLine>dim name as string = key.LeftB( key.LenB - hex.LenB - 1 )</SourceLine>
+   <SourceLine>return name</SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
   <AliasName></AliasName>
   <ItemFlags>33</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>name As String</ItemParams>
+  <ItemParams>key As String</ItemParams>
   <ItemResult>String</ItemResult>
  </Method>
  <Method>
   <ItemName>Validate</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1620037631</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Sub Validate(value As Variant)</SourceLine>
+   <SourceLine>Sub Validate(ByRef value As Variant)</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>// If value holds a Dictionary or Array,</SourceLine>
+   <SourceLine>// this will do the conversion and allow the new</SourceLine>
+   <SourceLine>// object to raise an exception if needed</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>dim isGood as boolean = true // Assume it is</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if value.IsArray then</SourceLine>
+   <SourceLine>dim jsonArr as JSONItem_MTC</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>select case value.ArrayElementType</SourceLine>
+   <SourceLine>case Variant.TypeBoolean</SourceLine>
+   <SourceLine>dim arr() as boolean = value</SourceLine>
+   <SourceLine>jsonArr = arr</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>case Variant.TypeDouble</SourceLine>
+   <SourceLine>dim arr() as double = value</SourceLine>
+   <SourceLine>jsonArr = arr</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>case Variant.TypeInt32</SourceLine>
+   <SourceLine>dim arr() as Int32 = value</SourceLine>
+   <SourceLine>jsonArr = arr</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>case Variant.TypeInt64</SourceLine>
+   <SourceLine>dim arr() as Int64 = value</SourceLine>
+   <SourceLine>jsonArr = arr</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>case Variant.TypeSingle</SourceLine>
+   <SourceLine>dim arr() as single = value</SourceLine>
+   <SourceLine>jsonArr = arr</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>case Variant.TypeString</SourceLine>
+   <SourceLine>dim arr() as string = value</SourceLine>
+   <SourceLine>jsonArr = arr</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>case Variant.TypeText</SourceLine>
+   <SourceLine>dim arr() as text = value</SourceLine>
+   <SourceLine>jsonArr = arr</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>case Variant.TypeObject</SourceLine>
+   <SourceLine>dim arr() as object = value</SourceLine>
+   <SourceLine>jsonArr = arr</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>case else</SourceLine>
+   <SourceLine>isGood = false</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>end select</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if isGood then</SourceLine>
+   <SourceLine>value = jsonArr</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>else</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>select case value.Type</SourceLine>
    <SourceLine>case Variant.TypeNil, Variant.TypeBoolean</SourceLine>
@@ -1781,12 +1865,14 @@
    <SourceLine></SourceLine>
    <SourceLine>case Variant.TypeDouble, Variant.TypeSingle, Variant.TypeCurrency</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>case Variant.TypeInteger, Variant.TypeInt64</SourceLine>
+   <SourceLine>case Variant.TypeInt32, Variant.TypeInt64, Variant.TypeInteger</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>case Variant.TypeObject</SourceLine>
    <SourceLine>select case value</SourceLine>
    <SourceLine>case IsA JSONItem_MTC</SourceLine>
    <SourceLine>case IsA Dictionary</SourceLine>
+   <SourceLine>dim dictJSON as JSONItem_MTC = Dictionary( value )</SourceLine>
+   <SourceLine>value = dictJSON</SourceLine>
    <SourceLine>else</SourceLine>
    <SourceLine>raise new JSONException( "Unrecognized Object", 11 )</SourceLine>
    <SourceLine>end select</SourceLine>
@@ -1794,6 +1880,8 @@
    <SourceLine>else</SourceLine>
    <SourceLine>isGood = false</SourceLine>
    <SourceLine>end</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>if not isGood then</SourceLine>
    <SourceLine>raise new JSONException( "Illegal Value", 10 )</SourceLine>
@@ -1804,13 +1892,14 @@
   <AliasName></AliasName>
   <ItemFlags>33</ItemFlags>
   <IsShared>0</IsShared>
-  <ItemParams>value As Variant</ItemParams>
+  <ItemParams>ByRef value As Variant</ItemParams>
   <ItemResult></ItemResult>
  </Method>
  <Method>
   <ItemName>JSONStringToUTF8</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1223368703</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function JSONStringToUTF8(s As String) As String</SourceLine>
@@ -1898,16 +1987,10 @@
   <ItemName>LoadObject</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>119379967</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub LoadObject(inMB As MemoryBlock, ByRef pos As Integer, ByRef current As JSONItem_MTC, stack() As JSONItem_MTC, outMB As MemoryBlock)</SourceLine>
-   <SourceLine>#if not DebugBuild</SourceLine>
-   <SourceLine>#pragma BackgroundTasks false</SourceLine>
-   <SourceLine>#pragma BoundsChecking false</SourceLine>
-   <SourceLine>#pragma NilObjectChecking false</SourceLine>
-   <SourceLine>#pragma StackOverflowChecking false</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine></SourceLine>
    <SourceLine>dim inPtr As Ptr = inMB</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>dim name as string</SourceLine>
@@ -1949,7 +2032,7 @@
    <SourceLine>end if</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>value = DecodeValue( inMB, pos, current, outMB )</SourceLine>
-   <SourceLine>key = EncodeHex( name )</SourceLine>
+   <SourceLine>key = NameToKey( name )</SourceLine>
    <SourceLine>current.ObjectValues.Value( key ) = value</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>if value IsA JSONItem_MTC then</SourceLine>
@@ -1980,16 +2063,10 @@
   <ItemName>LoadArray</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>740392959</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub LoadArray(inMB As MemoryBlock, ByRef pos As Integer, ByRef current As JSONItem_MTC, stack() As JSONItem_MTC, outMB As MemoryBlock)</SourceLine>
-   <SourceLine>#if not DebugBuild</SourceLine>
-   <SourceLine>#pragma BackgroundTasks false</SourceLine>
-   <SourceLine>#pragma BoundsChecking false</SourceLine>
-   <SourceLine>#pragma NilObjectChecking false</SourceLine>
-   <SourceLine>#pragma StackOverflowChecking false</SourceLine>
-   <SourceLine>#endif</SourceLine>
-   <SourceLine></SourceLine>
    <SourceLine>dim inPtr As Ptr = inMB</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>dim commaFound as boolean</SourceLine>
@@ -2053,6 +2130,7 @@
   <ItemName>ParseNumber</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1864783871</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function ParseNumber(mb As MemoryBlock, startPos As Integer, endPos As Integer, ByRef result As Variant) As Boolean</SourceLine>
@@ -2168,6 +2246,7 @@
   <ItemName>EncodeCodepoint</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>172034047</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Sub EncodeCodepoint(value As Integer, outPtr As Ptr, pos As Integer)</SourceLine>
@@ -2192,6 +2271,7 @@
   <ItemName>IsLoading</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1337812991</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Function IsLoading() As Boolean</SourceLine>
@@ -2206,10 +2286,544 @@
   <ItemParams></ItemParams>
   <ItemResult>Boolean</ItemResult>
  </Method>
+ <Method>
+  <ItemName>Operator_Subscript</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1431545855</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Operator_Subscript(index As Integer, Assigns value As Variant)</SourceLine>
+   <SourceLine>self.Value( index ) = value</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>index As Integer, Assigns value As Variant</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>AppendOutMB</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>711995391</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function AppendOutMB(outMBs() As MemoryBlock, ByRef outIndex As Integer) As MemoryBlock</SourceLine>
+   <SourceLine>dim outMB as MemoryBlock</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>outMB = new MemoryBlock( kOutMBSize )</SourceLine>
+   <SourceLine>outMBs.Append outMB</SourceLine>
+   <SourceLine>outIndex = 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>return outMB</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>outMBs() As MemoryBlock, ByRef outIndex As Integer</ItemParams>
+  <ItemResult>MemoryBlock</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ParseJSON</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>484835327</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function ParseJSON(s As String) As Variant</SourceLine>
+   <SourceLine>dim j as new JSONItem_MTC( s )</SourceLine>
+   <SourceLine>return j.ToNativeValue</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>1</IsShared>
+  <ItemParams>s As String</ItemParams>
+  <ItemResult>Variant</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Operator_Convert</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>hidden</Attributes>
+  <Visible>1</Visible>
+  <PartID>1871661055</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( hidden )  Sub Operator_Convert(arr() As String)</SourceLine>
+   <SourceLine>self.Constructor()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for each v as string in arr</SourceLine>
+   <SourceLine>self.Append v</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>arr() As String</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Operator_Convert</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>hidden</Attributes>
+  <Visible>1</Visible>
+  <PartID>1799974911</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( hidden )  Sub Operator_Convert(arr() As Int32)</SourceLine>
+   <SourceLine>self.Constructor()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for each v as Int32 in arr</SourceLine>
+   <SourceLine>self.Append v</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>arr() As Int32</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Operator_Convert</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>hidden</Attributes>
+  <Visible>1</Visible>
+  <PartID>1891786751</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( hidden )  Sub Operator_Convert(arr() As Int64)</SourceLine>
+   <SourceLine>self.Constructor()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for each v as Int64 in arr</SourceLine>
+   <SourceLine>self.Append v</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>arr() As Int64</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Operator_Convert</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>hidden</Attributes>
+  <Visible>1</Visible>
+  <PartID>775534591</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( hidden )  Sub Operator_Convert(arr() As Boolean)</SourceLine>
+   <SourceLine>self.Constructor()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for each v as boolean in arr</SourceLine>
+   <SourceLine>self.Append v</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>arr() As Boolean</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Operator_Convert</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>hidden</Attributes>
+  <Visible>1</Visible>
+  <PartID>2086141951</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( hidden )  Sub Operator_Convert(arr() As Double)</SourceLine>
+   <SourceLine>self.Constructor()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for each v as double in arr</SourceLine>
+   <SourceLine>self.Append v</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>arr() As Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Operator_Convert</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>hidden</Attributes>
+  <Visible>1</Visible>
+  <PartID>1175330815</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( hidden )  Sub Operator_Convert(arr() As Single)</SourceLine>
+   <SourceLine>self.Constructor()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for each v as single in arr</SourceLine>
+   <SourceLine>self.Append v</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>arr() As Single</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Operator_Convert</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>hidden</Attributes>
+  <Visible>1</Visible>
+  <PartID>509423615</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( hidden )  Sub Operator_Convert(arr() As Currency)</SourceLine>
+   <SourceLine>self.Constructor()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for each v as currency in arr</SourceLine>
+   <SourceLine>self.Append v</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>arr() As Currency</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Operator_Convert</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>hidden</Attributes>
+  <Visible>1</Visible>
+  <PartID>1201774591</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( hidden )  Sub Operator_Convert(arr() As Text)</SourceLine>
+   <SourceLine>self.Constructor()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for each v as text in arr</SourceLine>
+   <SourceLine>self.Append v</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>arr() As Text</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Operator_Convert</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>hidden</Attributes>
+  <Visible>1</Visible>
+  <PartID>257023999</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( hidden )  Sub Operator_Convert(arr() As Variant)</SourceLine>
+   <SourceLine>self.Constructor()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for each v as variant in arr</SourceLine>
+   <SourceLine>self.Append v</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>arr() As Variant</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Operator_Convert</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>hidden</Attributes>
+  <Visible>1</Visible>
+  <PartID>742680575</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( hidden )  Sub Operator_Convert(arr() As Object)</SourceLine>
+   <SourceLine>self.Constructor()</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for each v as object in arr</SourceLine>
+   <SourceLine>self.Append v</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>arr() As Object</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Operator_Convert</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>hidden</Attributes>
+  <Visible>1</Visible>
+  <PartID>1756710911</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( hidden )  Function Operator_Convert() As Dictionary</SourceLine>
+   <SourceLine>if IsArray then</SourceLine>
+   <SourceLine>raise new TypeMismatchException</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>dim d as Dictionary = Dictionary( ToNativeValue )</SourceLine>
+   <SourceLine>if d is nil then</SourceLine>
+   <SourceLine>d = new Dictionary</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>return d</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Dictionary</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Operator_Convert</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>hidden</Attributes>
+  <Visible>1</Visible>
+  <PartID>182622207</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( hidden )  Function Operator_Convert() As Variant()</SourceLine>
+   <SourceLine>if IsObject then</SourceLine>
+   <SourceLine>raise new TypeMismatchException</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>dim arr() as variant</SourceLine>
+   <SourceLine>dim native as variant = ToNativeValue</SourceLine>
+   <SourceLine>if not native.IsNull then</SourceLine>
+   <SourceLine>arr = native</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>return arr</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams></ItemParams>
+  <ItemResult>Variant()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Operator_Compare</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>hidden</Attributes>
+  <Visible>1</Visible>
+  <PartID>336379903</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( hidden )  Function Operator_Compare(compare As JSONItem_MTC) As Integer</SourceLine>
+   <SourceLine>if compare is nil then</SourceLine>
+   <SourceLine>return 1</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if Count &lt;&gt; compare.Count then</SourceLine>
+   <SourceLine>return Count - compare.Count</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>elseif Count = 0 then</SourceLine>
+   <SourceLine>return 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if IsObject &lt;&gt; compare.IsObject then</SourceLine>
+   <SourceLine>return -1 // Meaningless, really</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>// Same count, same type, let's dive in</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>dim result as integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if IsArray then</SourceLine>
+   <SourceLine>dim arr1() as variant = self.ArrayValues</SourceLine>
+   <SourceLine>dim arr2() as variant = compare.ArrayValues</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for i as integer = 0 to arr1.Ubound</SourceLine>
+   <SourceLine>dim v1 as variant = arr1( i )</SourceLine>
+   <SourceLine>dim v2 as variant = arr2( i )</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>result = CompareValues( v1, v2 )</SourceLine>
+   <SourceLine>if result &lt;&gt; 0 then</SourceLine>
+   <SourceLine>exit</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>else // IsObject</SourceLine>
+   <SourceLine>dim d1 as Dictionary = self.ObjectValues</SourceLine>
+   <SourceLine>dim d2 as Dictionary = compare.ObjectValues</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>// Since we know the count is the same, every key and value must match</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>dim keys() as variant = d1.Keys</SourceLine>
+   <SourceLine>dim values() as variant = d1.Values</SourceLine>
+   <SourceLine>for i as integer = 0 to keys.Ubound</SourceLine>
+   <SourceLine>dim key as variant = keys( i )</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if not d2.HasKey( key ) then</SourceLine>
+   <SourceLine>result = 1 // Meaningless</SourceLine>
+   <SourceLine>exit</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim v1 as variant = values( i )</SourceLine>
+   <SourceLine>dim v2 as variant = d2.Value( key )</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>result = CompareValues( v1, v2 )</SourceLine>
+   <SourceLine>if result &lt;&gt; 0 then</SourceLine>
+   <SourceLine>exit</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>return result</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>compare As JSONItem_MTC</ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>CompareValues</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>293853183</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function CompareValues(v1 As Variant, v2 As Variant) As Integer</SourceLine>
+   <SourceLine>if v1.IsNull and v2.IsNull then</SourceLine>
+   <SourceLine>return 0</SourceLine>
+   <SourceLine>elseif v1.IsNull then</SourceLine>
+   <SourceLine>return -1</SourceLine>
+   <SourceLine>elseif v2.IsNull then</SourceLine>
+   <SourceLine>return 1</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim result as integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if v1 isa JSONItem_MTC and v2 isa JSONItem_MTC then</SourceLine>
+   <SourceLine>result = JSONItem_MTC( v1 ).Operator_Compare( JSONItem_MTC( v2 ) )</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim type1 as integer = v1.Type</SourceLine>
+   <SourceLine>dim type2 as integer = v2.Type</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>// Normalize the types</SourceLine>
+   <SourceLine>//</SourceLine>
+   <SourceLine>if type1 = Variant.TypeInt32 or type1 = Variant.TypeInteger then</SourceLine>
+   <SourceLine>type1 = Variant.TypeInt64</SourceLine>
+   <SourceLine>elseif type1 = Variant.TypeCurrency then</SourceLine>
+   <SourceLine>dim d as double = v1.CurrencyValue</SourceLine>
+   <SourceLine>v1 = d</SourceLine>
+   <SourceLine>type1 = Variant.TypeDouble </SourceLine>
+   <SourceLine>elseif type1 = Variant.TypeSingle then</SourceLine>
+   <SourceLine>type1 = Variant.TypeDouble</SourceLine>
+   <SourceLine>elseif type1 = Variant.TypeText then</SourceLine>
+   <SourceLine>dim s as string = v1.TextValue</SourceLine>
+   <SourceLine>v1 = s</SourceLine>
+   <SourceLine>type1 = Variant.TypeString</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if type2 = Variant.TypeInt32 or type2 = Variant.TypeInteger then</SourceLine>
+   <SourceLine>type2 = Variant.TypeInt64</SourceLine>
+   <SourceLine>elseif type2 = Variant.TypeCurrency then</SourceLine>
+   <SourceLine>dim d as double = v2.CurrencyValue</SourceLine>
+   <SourceLine>v2 = d</SourceLine>
+   <SourceLine>type2 = Variant.TypeCurrency</SourceLine>
+   <SourceLine>elseif type2 = Variant.TypeSingle then</SourceLine>
+   <SourceLine>type2 = Variant.TypeDouble</SourceLine>
+   <SourceLine>elseif type2 = Variant.TypeText then</SourceLine>
+   <SourceLine>dim s as string = v2.TextValue</SourceLine>
+   <SourceLine>v2 = s</SourceLine>
+   <SourceLine>type2 = Variant.TypeString</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if type1 = type2 then</SourceLine>
+   <SourceLine>select case type1</SourceLine>
+   <SourceLine>case Variant.TypeInt64</SourceLine>
+   <SourceLine>result = v1.IntegerValue - v1.IntegerValue</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>case Variant.TypeBoolean</SourceLine>
+   <SourceLine>if v1.BooleanValue = v2.BooleanValue then</SourceLine>
+   <SourceLine>result = 0</SourceLine>
+   <SourceLine>elseif v1.BooleanValue then</SourceLine>
+   <SourceLine>result = 1</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>result = -1</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>case else // Strings, doubles, singles</SourceLine>
+   <SourceLine>result = StrComp( v1.StringValue, v2.StringValue, 0 )</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>end select</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>result = type1 - type2</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>return result</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <IsShared>0</IsShared>
+  <ItemParams>v1 As Variant, v2 As Variant</ItemParams>
+  <ItemResult>Integer</ItemResult>
+ </Method>
  <Note>
   <ItemName>Legal</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>220936191</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <NoteLine>Legal</NoteLine>
@@ -2231,6 +2845,7 @@
   <ItemName>About</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>2034724863</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <NoteLine>About</NoteLine>
@@ -2271,6 +2886,7 @@
   <ItemName>Acknowledgements</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>2077947903</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <NoteLine>Acknowledgements</NoteLine>
@@ -2285,6 +2901,7 @@
   <ItemName>Specs (RFC)</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>957755391</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <NoteLine>Specs (RFC)</NoteLine>
@@ -2299,6 +2916,7 @@
   <ItemName>ArrayValues()</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>380983295</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>ArrayValues() As Variant</SourceLine>
@@ -2313,9 +2931,10 @@
   <ItemName>Compact</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1741629439</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Compact As Boolean</SourceLine>
+   <SourceLine>Compact As Boolean = True</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -2327,6 +2946,7 @@
   <ItemName>DecimalFormat</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1761923071</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>DecimalFormat As String</SourceLine>
@@ -2341,9 +2961,10 @@
   <ItemName>EscapeSlashes</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1982945279</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>EscapeSlashes As Boolean</SourceLine>
+   <SourceLine>EscapeSlashes As Boolean = True</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -2355,6 +2976,7 @@
   <ItemName>HasSetType</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1829965823</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>HasSetType As Integer</SourceLine>
@@ -2369,9 +2991,10 @@
   <ItemName>IndentSpacing</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>991193087</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>IndentSpacing As Integer</SourceLine>
+   <SourceLine>IndentSpacing As Integer = 2</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -2383,6 +3006,7 @@
   <ItemName>IsArray</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>877072383</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>IsArray As Boolean</SourceLine>
@@ -2410,6 +3034,7 @@
   <ItemName>IsObject</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1241823231</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>IsObject As Boolean</SourceLine>
@@ -2437,6 +3062,7 @@
   <ItemName>ObjectValues</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>183478271</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>ObjectValues As Dictionary</SourceLine>
@@ -2451,9 +3077,10 @@
   <ItemName>EncodeUnicode</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1680922623</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>EncodeUnicode As EncodeType</SourceLine>
+   <SourceLine>EncodeUnicode As EncodeType = EncodeType.JavaScriptCompatible</SourceLine>
    <SourceLine></SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
@@ -2465,6 +3092,7 @@
   <ItemName>Count</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1905690623</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Count As Integer</SourceLine>
@@ -2498,6 +3126,7 @@
   <ItemName>Strict</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1549398015</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Strict As Boolean</SourceLine>
@@ -2512,6 +3141,7 @@
   <ItemName>LoadCS</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1467363327</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>LoadCS As CriticalSection</SourceLine>
@@ -2526,6 +3156,7 @@
   <ItemName>mIsLoading</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>813780991</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>mIsLoading As Boolean</SourceLine>
@@ -2540,6 +3171,7 @@
   <ItemName>ToString</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>31318015</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>ToString As String</SourceLine>
@@ -2559,6 +3191,71 @@
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Get</SourceLine>
    <SourceLine>return self.Serialize( self )</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>ToNativeValue</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>659066879</PartID>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>ToNativeValue As Variant</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>ToNativeValue As Variant</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <IsShared>0</IsShared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>if IsObject then</SourceLine>
+   <SourceLine>dim d as Dictionary = new Dictionary</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim rawKeys() as variant = ObjectValues.Keys</SourceLine>
+   <SourceLine>dim values() as variant = ObjectValues.Values</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for i as integer = 0 to rawKeys.Ubound</SourceLine>
+   <SourceLine>dim name as string = KeyToName( rawKeys( i ) )</SourceLine>
+   <SourceLine>dim value as variant = values( i )</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if value isa JSONItem_MTC then</SourceLine>
+   <SourceLine>value = JSONItem_MTC( value ).ToNativeValue</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>d.Value( name ) = value</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>return d</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>elseif IsArray then</SourceLine>
+   <SourceLine>dim arr() as variant</SourceLine>
+   <SourceLine>redim arr( ArrayValues.Ubound )</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for i as integer = 0 to ArrayValues.Ubound</SourceLine>
+   <SourceLine>dim value as variant = ArrayValues( i )</SourceLine>
+   <SourceLine>if value isa JSONItem_MTC then</SourceLine>
+   <SourceLine>value = JSONItem_MTC( value ).ToNativeValue</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>arr( i ) = value</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>return arr</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>return nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>end if</SourceLine>
    <SourceLine>End Get</SourceLine>
   </GetAccessor>
  </Property>
@@ -2659,6 +3356,7 @@
   <ItemName>kBackSlash</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>763668479</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>92</ItemDef>
@@ -2668,6 +3366,7 @@
   <ItemName>kCloseCurlyBrace</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1277224959</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>125</ItemDef>
@@ -2677,6 +3376,7 @@
   <ItemName>kCloseSquareBracket</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1223139327</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>93</ItemDef>
@@ -2686,6 +3386,7 @@
   <ItemName>kColon</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>884340735</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>58</ItemDef>
@@ -2695,6 +3396,7 @@
   <ItemName>kComma</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1194700799</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>44</ItemDef>
@@ -2704,6 +3406,7 @@
   <ItemName>kForwardSlash</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1722542079</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>47</ItemDef>
@@ -2713,6 +3416,7 @@
   <ItemName>kHasSetArray</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>961742847</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>1</ItemDef>
@@ -2722,6 +3426,7 @@
   <ItemName>kHasSetNone</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>545648639</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>0</ItemDef>
@@ -2731,6 +3436,7 @@
   <ItemName>kHasSetObject</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1818718207</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>2</ItemDef>
@@ -2740,6 +3446,7 @@
   <ItemName>kOpenCurlyBrace</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>216090623</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>123</ItemDef>
@@ -2749,6 +3456,7 @@
   <ItemName>kOpenSquareBracket</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1391450111</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>91</ItemDef>
@@ -2758,6 +3466,7 @@
   <ItemName>kQuote</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1988024319</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>34</ItemDef>
@@ -2767,15 +3476,17 @@
   <ItemName>Version</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1097842687</PartID>
   <TextEncoding>134217984</TextEncoding>
-  <ItemType>2</ItemType>
-  <ItemDef>2.9</ItemDef>
+  <ItemType>0</ItemType>
+  <ItemDef>4.2</ItemDef>
   <ItemFlags>0</ItemFlags>
  </Constant>
  <Constant>
   <ItemName>kHyphen</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1902444543</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>45</ItemDef>
@@ -2785,6 +3496,7 @@
   <ItemName>kPlus</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>547260415</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>43</ItemDef>
@@ -2794,6 +3506,7 @@
   <ItemName>kDot</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>217178111</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>2</ItemType>
   <ItemDef>46</ItemDef>
@@ -2803,10 +3516,31 @@
   <ItemName>kDefaultDecimalFormat</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>1628862463</PartID>
   <TextEncoding>134217984</TextEncoding>
   <ItemType>0</ItemType>
   <ItemDef>-0.0##############</ItemDef>
   <ItemFlags>0</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>kInMBSize</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>1991727103</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>2048</ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>kOutMBSize</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <PartID>322291711</PartID>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemType>2</ItemType>
+  <ItemDef>2097152</ItemDef>
+  <ItemFlags>33</ItemFlags>
  </Constant>
  <Enumeration>
   <TextEncoding>134217984</TextEncoding>
@@ -2816,6 +3550,7 @@
   <ItemName>EncodeType</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
+  <PartID>619845631</PartID>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>None = 0</SourceLine>
